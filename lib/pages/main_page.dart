@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task_riot/theme.dart';
-import 'package:task_riot/todo.dart';
+import 'package:task_riot/pages/add_page.dart';
+import 'package:task_riot/services/todo.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -22,11 +22,10 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(title: Text("Task Riot")),
       floatingActionButton: FloatingActionButton(
         onPressed: add,
-
         child: Icon(Icons.add),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.all(10.0),
         child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             return Column(
@@ -47,7 +46,6 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   confirmDismiss: (direction) async {
-                    
                     return await showDialog(
                       context: context,
                       builder: (context) {
@@ -88,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +121,9 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void add() {}
+  void add() {
+    Navigator.push(context, MaterialPageRoute(builder:(context) => AddPage()));
+  }
 
   void onDismissed() {}
 }

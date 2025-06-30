@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_riot/pages/main_page.dart';
-import 'package:task_riot/theme.dart';
+import 'package:task_riot/theme/theme.dart';
 
 void main() => runApp(const MyApp());
 

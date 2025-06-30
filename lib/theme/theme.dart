@@ -11,11 +11,52 @@ final ThemeData monoDarkBlueTheme = ThemeData(
     centerTitle: true,
     elevation: 0,
   ),
-  
+  bottomAppBarTheme: BottomAppBarTheme(
+    color: Color(0xFF0D1B2A),
+    elevation: 0
+    /* backgroundColor: Color(0xFF0D1B2A),
+    foregroundColor: Colors.white,
+    centerTitle: true,
+    elevation: 0, */
+  ),
+
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: Color(0xFF415A77),
     foregroundColor: Colors.white,
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Color(0xFF415A77),
+      foregroundColor: Colors.white,
+      textStyle: TextStyle(fontWeight: FontWeight.w600),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+    ),
+  ),
+  /* inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: Color(0xFF1B263B),
+    hintStyle: TextStyle(color: Colors.white38),
+    labelStyle: TextStyle(color: Colors.white70),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(color: Color(0xFF415A77)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(color: Colors.white),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(color: Color(0xFFB00020)),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(color: Color(0xFFB00020)),
+    ),
+  ), */
   textTheme: TextTheme(
     bodyLarge: TextStyle(color: Colors.white, fontSize: 16),
     bodyMedium: TextStyle(color: Colors.white70, fontSize: 14),
