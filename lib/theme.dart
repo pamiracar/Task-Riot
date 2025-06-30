@@ -11,6 +11,7 @@ final ThemeData monoDarkBlueTheme = ThemeData(
     centerTitle: true,
     elevation: 0,
   ),
+  
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: Color(0xFF415A77),
     foregroundColor: Colors.white,
