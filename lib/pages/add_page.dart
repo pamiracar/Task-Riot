@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:task_riot/services/shared_prefences_service.dart';
+import 'package:task_riot/services/todo.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({super.key});
@@ -12,6 +14,9 @@ class AddPage extends StatefulWidget {
 class _AddPageState extends State<AddPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _textController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  final SharedPrefencesService _prefencesService = SharedPrefencesService();
 
   final List<Map<String, String>> quotes = [
     {
@@ -116,7 +121,7 @@ class _AddPageState extends State<AddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add New Todo")),
+      appBar: AppBar(title: Text("Add New Task")),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -129,12 +134,15 @@ class _AddPageState extends State<AddPage> {
                   vertical: 16,
                   horizontal: 32,
                 ),
+                elevation: 0,
                 textStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
+                backgroundColor: Color(0xFF0D1B2A),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(color: Colors.blueGrey),
                 ),
               ),
               child: Padding(
@@ -152,48 +160,71 @@ class _AddPageState extends State<AddPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextFormField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Color(0xFF415A77)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                label: Text("Title", style: TextStyle(color: Colors.white)),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: _titleController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please write something';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.blueGrey),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      label: Text(
+                        "Title",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 25),
+                  TextFormField(
+                    controller: _textController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Please write something";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.blueGrey),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      label: Text(
+                        "Text",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    maxLines: 3,
+                    maxLength: 80,
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 25),
-            TextFormField(
-              controller: _textController,
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Color(0xFF415A77)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                label: Text("Text", style: TextStyle(color: Colors.white)),
-              ),
-              maxLines: 3,
-              maxLength: 80,
-            ),
-            SizedBox(height: 140,),
+
+            SizedBox(height: 140),
             Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   '"${selectedQuote["quote"]}"',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.blueGrey,
-                  ),
+                  style: const TextStyle(fontSize: 14, color: Colors.blueGrey),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
@@ -215,5 +246,15 @@ class _AddPageState extends State<AddPage> {
     );
   }
 
-  void addButton() {}
+  void addButton() async {
+    if (_formKey.currentState!.validate()) {
+      Todo task = Todo(title: _titleController.text, text: _titleController.text);
+      await _prefencesService.saveData(task.title, _textController.text);
+      Navigator.pop(context);
+      setState(() {
+
+      });
+
+    }
+  }
 }

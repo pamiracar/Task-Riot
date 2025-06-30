@@ -24,17 +24,7 @@ final ThemeData monoDarkBlueTheme = ThemeData(
     backgroundColor: Color(0xFF415A77),
     foregroundColor: Colors.white,
   ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Color(0xFF415A77),
-      foregroundColor: Colors.white,
-      textStyle: TextStyle(fontWeight: FontWeight.w600),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-    ),
-  ),
+
   /* inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: Color(0xFF1B263B),
@@ -92,3 +82,4 @@ final ThemeData monoDarkBlueTheme = ThemeData(
     iconColor: Colors.white,
   ),
 );
+
