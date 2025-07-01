@@ -16,16 +16,6 @@ Organize your daily todos, keep track of your progress, and boost your productiv
 
 ---
 
-## 📱 Screenshots
-
-<!-- Add screenshots to your /assets folder and update the paths below -->
-<p float="left">
-  <img src="assets/screenshot1.png" width="200" />
-  <img src="assets/screenshot2.png" width="200" />
-  <img src="assets/screenshot3.png" width="200" />
-</p>
-
----
 
 ## 🛠️ Built With
 
