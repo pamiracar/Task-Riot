@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_riot/pages/add_page.dart';
 import 'package:task_riot/pages/settings_page.dart';
+import 'package:task_riot/pages/update_page.dart';
 import 'package:task_riot/services/shared_prefences_service.dart';
 
 class MainPage extends StatefulWidget {
@@ -33,9 +34,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        title: Text("Task Riot"),
-      ),
+      appBar: AppBar(title: Text("Task Riot")),
       floatingActionButton: FloatingActionButton(
         onPressed: add,
         child: Icon(Icons.add),
@@ -53,8 +52,22 @@ class _MainPageState extends State<MainPage> {
                       SizedBox(height: 10),
                       Dismissible(
                         key: UniqueKey(),
-                        onDismissed: (direction) => onDismissed(todo.key),
-                        background: Container(
+                        onDismissed: (direction) {
+                          if (direction == DismissDirection.endToStart) {
+                            onDismissed(todo.key);
+                          } else if (direction == DismissDirection.startToEnd) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UpdatePage(
+                                  title: todo.key,
+                                  text: todo.value,
+                                ),
+                              ),
+                            ).then((_) => loadTodos());
+                          }
+                        },
+                        secondaryBackground: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Theme.of(context).colorScheme.errorContainer,
@@ -63,39 +76,83 @@ class _MainPageState extends State<MainPage> {
                           padding: EdgeInsets.only(right: 20),
                           child: Icon(Icons.delete_forever_outlined),
                         ),
+                        background: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xFFF2C94C),
+                          ),
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.only(left: 20),
+                          child: Icon(Icons.edit),
+                        ),
                         confirmDismiss: (direction) async {
-                          return await showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: const Text("Delete Task"),
-                                content: const Text(
-                                  "Are you sure you want to delete?",
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop(false);
-                                    },
-                                    child: Text("Cancel"),
+                          if (direction == DismissDirection.endToStart) {
+                            return await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text("Delete Task"),
+                                  content: const Text(
+                                    "Are you sure you want to delete?",
                                   ),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop(true);
-                                    },
-                                    child: Text(
-                                      "Delete",
-                                      style: TextStyle(
-                                        color: Theme.of(context).colorScheme.error,
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop(false);
+                                      },
+                                      child: Text("Cancel"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop(true);
+                                      },
+                                      child: Text(
+                                        "Delete",
+                                        style: TextStyle(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.error,
+                                        ),
                                       ),
                                     ),
+                                  ],
+                                );
+                              },
+                            );
+                          } else {
+                            return await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text("Edit Task"),
+                                  content: const Text(
+                                    "Are you sure you want to edit?",
                                   ),
-                                ],
-                              );
-                            },
-                          );
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop(false);
+                                      },
+                                      child: Text("Cancel"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop(true);
+                                      },
+                                      child: Text(
+                                        "Edit",
+                                        style: TextStyle(
+                                          color:Color(0xFFF2C94C)
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
-                        direction: DismissDirection.endToStart,
+                        direction: DismissDirection.horizontal,
                         child: Column(
                           children: [
                             Container(
@@ -122,7 +179,9 @@ class _MainPageState extends State<MainPage> {
                                     ),
                                     Text(
                                       todo.value,
-                                      style: Theme.of(context).textTheme.labelMedium,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.labelMedium,
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 1,
                                       softWrap: false,
@@ -142,13 +201,15 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void add() async{
-    await Navigator.push(context, MaterialPageRoute(builder: (context) => AddPage()));
+  void add() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddPage()),
+    );
     await loadTodos();
   }
 
-  void onDismissed(String title) async{
-      await SharedPrefencesService().deleteData(title);
-
+  void onDismissed(String title) async {
+    await SharedPrefencesService().deleteData(title);
   }
 }
