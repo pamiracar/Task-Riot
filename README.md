@@ -1,6 +1,4 @@
-# ✅ Simple Todo App  
-
-![App Screenshot](https://via.placeholder.com/300x600/5B86E5/FFFFFF?text=Todo+App+Preview)  
+# ✅ TASK RIOT  
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.19.0-blue" alt="Flutter">
