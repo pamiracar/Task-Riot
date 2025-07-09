@@ -1,41 +1,40 @@
-# 📱 Task Riot - Flutter Task Management App
+# ✅ Simple Todo App  
 
-![App Banner](https://via.placeholder.com/1200x400/5B86E5/FFFFFF?text=Task+Riot+Mobile+App)
+![App Screenshot](https://via.placeholder.com/300x600/5B86E5/FFFFFF?text=Todo+App+Preview)  
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Flutter-3.19.0-blue?logo=flutter" alt="Flutter Version">
-  <img src="https://img.shields.io/badge/Dart-3.3.0-blue?logo=dart" alt="Dart Version">
-  <img src="https://img.shields.io/github/last-commit/pamiracar/Task-Riot" alt="Last Commit">
+  <img src="https://img.shields.io/badge/Flutter-3.19.0-blue" alt="Flutter">
+  <img src="https://img.shields.io/badge/Dart-3.3.0-blue" alt="Dart">
+  <img src="https://img.shields.io/badge/null-safety-success" alt="Null Safety">
 </p>
 
-## ✨ Key Features
-- **Multi-platform** support (iOS, Android)
-- **Beautiful UI** with Material 3 design
+## 📱 Features  
+- **Add/Delete tasks** with simple UI  
+- **Local storage** using SharedPreferences  
+- **No complex state management** (setState only)  
+- Minimalist design  
 
-## 🛠 Tech Stack
-| Category       | Technologies                          |
-|----------------|---------------------------------------|
-| Framework      | Flutter 3.19                          |
-| Language       | Dart 3.3                              |
-| Local DB       | Shared Preferences                    |
+## 🛠 Tech Stack  
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.2
 
-## 🚀 Installation
-### Requirements
-- Flutter SDK 3.19.0+
-- Android Studio/VSCode with Flutter plugins
-- Xcode 15+ (for iOS builds)
-
-### Steps
+##🚀 Installation
 ```bash
-# 1. Clone repository
 git clone https://github.com/pamiracar/Task-Riot.git
 cd Task-Riot
-
-# 2. Install dependencies
 flutter pub get
-
-# 3. Setup environment variables
-cp .env.example .env
-
-# 4. Run the app (debug mode)
 flutter run
+
+##🏗 Project Structure
+lib/
+├── main.dart       # App entry
+├── todo_page.dart  # Main screen
+└── theme.dart      # Theme config
+
+##📝 Todo
+--Add task categories
+--Swipe to delete
+--Backup/Restore
