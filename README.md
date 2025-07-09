@@ -20,13 +20,14 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.2.2
-
+```
 ##🚀 Installation
 ```bash
 git clone https://github.com/pamiracar/Task-Riot.git
 cd Task-Riot
 flutter pub get
 flutter run
+```
 
 ##🏗 Project Structure
 lib/
