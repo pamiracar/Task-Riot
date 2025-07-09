@@ -30,12 +30,14 @@ flutter run
 ```
 
 ##🏗 Project Structure
+```text
 lib/
 ├── main.dart       # App entry
 ├── todo_page.dart  # Main screen
 └── theme.dart      # Theme config
+```
 
 ##📝 Todo
---Add task categories
---Swipe to delete
---Backup/Restore
+- Add task categories
+- Swipe to delete
+- Backup/Restore
