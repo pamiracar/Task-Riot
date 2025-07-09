@@ -1,7 +1,5 @@
 # Task Riot - Flutter Task Management App
 
-![Task Riot Banner](https://via.placeholder.com/1200x400?text=Task+Riot+Flutter+App)
-
 A beautiful and productive task management application built with Flutter.
 
 ## ✨ Features
