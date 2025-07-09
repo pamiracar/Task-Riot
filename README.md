@@ -1,35 +1,35 @@
-# ✅ Task Riot
+# Task Riot - Flutter Task Management App
 
-**Task Riot** is a clean and powerful **task management app** built with Flutter.
-Organize your daily todos, keep track of your progress, and boost your productivity — all in one place.
+![Task Riot Banner](https://via.placeholder.com/1200x400?text=Task+Riot+Flutter+App)
 
----
+A beautiful and productive task management application built with Flutter.
 
-## 🚀 Features
+## ✨ Features
 
-- 📝 Create, edit, and delete tasks
-- ✅ Mark tasks as completed
-- 📅 Task due dates & time management
-- 🎯 Simple and user-friendly interface
-- 🌙 Dark Mode support (optional)
-- 💾 Local storage with Shared Preferences
+- **Cross-platform**: iOS, Android, and Web support
+- **Beautiful UI**: Material 3 design with dark/light theme
+- **Task Management**:
+  - Create, edit, and organize tasks
+  - Priority levels and due dates
+  - Subtasks and checklists
+- **State Management**: Riverpod for efficient state handling
+- **Local Storage**: Hive for fast offline access
+- **Firebase Integration** (optional):
+  - Cloud sync
+  - Authentication
+  - Push notifications
 
----
+## 🚀 Getting Started
 
+### Prerequisites
 
-## 🛠️ Built With
+- Flutter SDK (>= 3.16.0)
+- Dart (>= 3.2.0)
+- Android Studio or VS Code with Flutter extension
 
-- [Flutter](https://flutter.dev/)
-- [Dart](https://dart.dev/)
-- [Shared Preferences](https://pub.dev/packages/shared_preferences) for local data storage
+### Installation
 
----
-
-## ⚙️ Installation
-
-To run this project locally:
-
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/pamiracar/Task-Riot.git
-   cd Task-Riot
+1. Clone the repository:
+```bash
+git clone https://github.com/pamiracar/Task-Riot.git
+cd Task-Riot
